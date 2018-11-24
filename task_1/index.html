@@ -3,12 +3,16 @@
 <head>
   <meta charset="UTF-8">
   <title>Homework 1</title>
+  <script
+    src="http://code.jquery.com/jquery-3.3.1.min.js"
+    integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
+    crossorigin="anonymous"></script>
 </head>
 <body>
 
 <h1>Personal Information</h1>
 
-<form action="https://mate-academy-form-lesson.herokuapp.com/create-application" method="post">
+<form action="https://cors-anywhere.herokuapp.com/https://mate-academy-form-lesson.herokuapp.com/create-application" method="post" id="form">
 
   <fieldset>
     <legend>Personal Information</legend>
@@ -72,6 +76,26 @@
   </fieldset>
 
   <input type="submit" value="Submit">
+
+  <div id="result"></div>
+
+  <script>
+    $(function() {
+      $('form').submit(function(e) {
+        var $form = $(this);
+        $.ajax({
+          type: $form.attr('method'),
+          url: $form.attr('action'),
+          data: $form.serialize()
+        }).done(function(data) {
+          document.getElementById('result').innerHTML = data;
+        }).fail(function() {
+          document.getElementById('result').innerHTML = 'fail';
+        });
+        e.preventDefault();
+      });
+    });
+  </script>
 
 </form>
 </body>
