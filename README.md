@@ -9,5 +9,5 @@ This *README* file created to demonstrate abilities of **Markdown** markup. Mark
 
 ## List of the my GitHub pages
 * [Example GH-Page](http://dreyhiflden.github.io/)
-* [Brandi landing page](https://dreyhiflden.github.io/Brandi-landing-page
+* [Brandi landing page](https://dreyhiflden.github.io/Brandi-landing-page)
 * [Task 1](http://dreyhiflden.github.io/task_1/)
