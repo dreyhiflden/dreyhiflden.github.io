@@ -3,10 +3,6 @@
 <head>
   <meta charset="UTF-8">
   <title>Homework 1</title>
-  <script
-    src="https://code.jquery.com/jquery-3.3.1.min.js"
-    integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
-    crossorigin="anonymous"></script>
 </head>
 <body>
 
@@ -79,26 +75,78 @@
 
   <input type="submit" value="Submit">
 
-  <div id="result"></div>
-
 </form>
 
 <script>
-  $(function() {
-    $('form').submit(function(e) {
-      var $form = $(this);
-      $.ajax({
-        type: $form.attr('method'),
-        url: $form.attr('action'),
-        data: $form.serialize()
-      }).done(function(data) {
-        document.getElementById('result').innerHTML = data;
-      }).fail(function() {
-        document.getElementById('result').innerHTML = 'fail';
-      });
-      e.preventDefault();
+  if (document.forms[0] && window.FormData) {
+
+    let message = {};
+    message.loading = 'Загрузка...';
+    message.failure = 'Ээххх! Что-то пошло не так...';
+
+    let form = document.forms[0];
+
+    let statusMessage = document.createElement('div');
+    statusMessage.className = 'status';
+
+    /*
+    Дабы передать данные на сервер, нужно их преобразовать в вид: foo=bar&name=John
+    Поскольку FormData отправляет их в кодировке multipart/form-data, а нам нуджно передать в x-www-form-urlencoded
+    (может быть можно и по другому, но у меня только с таким видом сервер принимает ответ, в противном случае
+    пишет что поле surname не заполнено. Так же на 156 строке указываю кодировку.
+
+    Взято с https://stackoverflow.com/questions/7542586/new-formdata-application-x-www-form-urlencoded
+
+    По сути, мы заменяем .serialize() в jQuery
+     */
+    let urlencodeFormData = (fd) => {
+      let s = '';
+      let encode = (s) => {
+        return encodeURIComponent(s).replace(/%20/g,'+');
+      };
+      for(let pair of fd.entries()) {
+        if(typeof pair[1] === 'string') {
+          s += (s ? '&' : '') + encode(pair[0])+'='+encode(pair[1])
+        }
+      }
+      return s;
+    };
+
+    // Настройка AJAX запроса
+    let request = new XMLHttpRequest();
+    request.open('POST', 'https://cors-anywhere.herokuapp.com/https://mate-academy-form-lesson.herokuapp.com/create-application', true);
+    // Указываем серверу что мы принимаем в ответе JSON
+    request.setRequestHeader('accept', 'application/json');
+    // Указываем серверу кодировку
+    request.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded; charset=UTF-8');
+
+    // Добавляем обработчик на событие `submit`
+    form.addEventListener('submit', (event) => {
+      event.preventDefault();
+      form.appendChild(statusMessage);
+
+      // Подготовка данных
+      let formData = new FormData(form);
+
+      // Отправляем данные
+      request.send(urlencodeFormData(formData));
+
+      // Функция для наблюдения изменения состояния request.readyState обновления statusMessage соответственно
+      request.onreadystatechange = () => {
+        // <4 =  ожидаем ответ от сервера
+        if (request.readyState < 4)
+          statusMessage.innerHTML = message.loading;
+        // 4 = Ответ от сервера полностью загружен
+        else if (request.readyState === 4) {
+          // 200 - 299 = успешная отправка данных!
+          if (request.status == 200 && request.status < 300)
+            statusMessage.innerHTML = request.responseText; // Отобразим ответ сервера
+          else
+            form.insertAdjacentHTML('beforeend', message.failure);
+        }
+      }
     });
-  });
+  }
 </script>
 
 </body>
