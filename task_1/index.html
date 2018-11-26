@@ -14,57 +14,74 @@
 
   <fieldset>
     <legend>Personal Information</legend>
-    <label for="surname"> Surname:</label>
-    <input type="text" id="surname" name="surname" autocomplete="off" required>
-    <br>
-    <label for="name"> Name: </label>
-    <input type="text" id="name" name="name" value="Dmitry">
-    <br>
-    <label for="age">How old are You?:</label>
-    <input type="number" id="age" name="age">
-    <br>
-    <label for="full-date">Full date of birth:</label>
-    <input type="date" id="full-date" name="full-date">
-    <br>
-    <label for="agreement">I accept the terms of the agreement</label>
-    <input type="checkbox" id="agreement" name="agreement">
+    <p>
+      <label for="surname"> Surname:</label>
+      <input type="text" id="surname" name="surname" autocomplete="off" required>
+    </p>
+    <p>
+      <label for="name"> Name: </label>
+      <input type="text" id="name" name="name" value="Dmitry">
+    </p>
+      <label for="age">How old are You?:</label>
+      <input type="number" id="age" name="age">
+    <p>
+      <label for="full-date">Full date of birth:</label>
+      <input type="date" id="full-date" name="full-date">
+    </p>
+    <p>
+      <label for="agreement">I accept the terms of the agreement</label>
+      <input type="checkbox" id="agreement" name="agreement">
+    </p>
   </fieldset>
 
   <fieldset>
     <legend>Registration</legend>
-    <label for="email">E-mail</label>
-    <input type="email" id="email" name="email">
-    <br>
-    <label for="password">Password</label>
-    <input type="password" id="password" name="password" minlength="6" maxlength="16">
+    <p>
+      <label for="email">E-mail</label>
+      <input type="email" id="email" name="email">
+    </p>
+    <p>
+      <label for="password">Password</label>
+      <input type="password" id="password" name="password" minlength="6" maxlength="16">
+    </p>
   </fieldset>
 
   <fieldset>
     <legend> An interesting fact about you!</legend>
     <p>Do you love cats?</p>
-    <input type="radio" value="yes" id="yes" name="love-cats-vote">
-    <label for="yes">Yes</label><br>
-    <input type="radio" value="no" id="no" name="love-cats-vote">
-    <label for="no">No</label>
-    <br>
-    <label for="fav-color">What is your favorite color?</label>
-    <br>
-    <input type="color" name="color" id="fav-color">
-    <br>
-    <label for="time-go-bad">What time do you go to bed?</label>
-    <br>
-    <input type="time" id="time-go-bad" name="time-go-bad">
-    <br>
-    <label for="brand">What your favorite brand of cars?</label>
-    <br>
-    <select name="brand" id="brand" size="4">
-      <option value="bmw">BMW</option>
-      <option value="audi">Audi</option>
-      <option value="lada">Lada</option>
-    </select>
-    <br>
-    <label for="rate">How do you rate our work?</label>
-    <br>
+      <p>
+        <input type="radio" value="yes" id="yes" name="love-cats-vote">
+        <label for="yes">Yes</label>
+        <br>
+        <input type="radio" value="no" id="no" name="love-cats-vote">
+        <label for="no">No</label>
+      </p>
+    </p>
+    <p>
+      <label for="fav-color">What is your favorite color?</label>
+    </p>
+    <p>
+      <input type="color" name="color" id="fav-color">
+    </p>
+    <p>
+      <label for="time-go-bed">What time do you go to bed?</label>
+    </p>
+    <p>
+      <input type="time" id="time-go-bed" name="time-go-bed">
+    </p>
+    <p>
+      <label for="brand">What your favorite brand of cars?</label>
+    </p>
+    <p>
+      <select name="brand" id="brand" size="4">
+        <option value="bmw">BMW</option>
+        <option value="audi">Audi</option>
+        <option value="lada">Lada</option>
+      </select>
+    </p>
+    <p>
+      <label for="rate">How do you rate our work?</label>
+    </p>
     <input name="rate" id="rate" type="range" min="0" max="100" value="50" step="10">
   </fieldset>
 
@@ -89,16 +106,6 @@
     let statusMessage = document.createElement('div');
     statusMessage.className = 'status';
 
-    /*
-    Дабы передать данные на сервер, нужно их преобразовать в вид: foo=bar&name=John
-    Поскольку FormData отправляет их в кодировке multipart/form-data, а нам нуджно передать в x-www-form-urlencoded
-    (может быть можно и по другому, но у меня только с таким видом сервер принимает ответ, в противном случае
-    пишет что поле surname не заполнено. Так же на 156 строке указываю кодировку.
-
-    Взято с https://stackoverflow.com/questions/7542586/new-formdata-application-x-www-form-urlencoded
-
-    По сути, мы заменяем .serialize() в jQuery
-     */
     let urlencodeFormData = (fd) => {
       let s = '';
       let encode = (s) => {
@@ -112,35 +119,25 @@
       return s;
     };
 
-    // Настройка AJAX запроса
-    let request = new XMLHttpRequest();
-    request.open('POST', 'https://cors-anywhere.herokuapp.com/https://mate-academy-form-lesson.herokuapp.com/create-application', true);
-    // Указываем серверу что мы принимаем в ответе JSON
-    request.setRequestHeader('accept', 'application/json');
-    // Указываем серверу кодировку
-    request.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded; charset=UTF-8');
-
-    // Добавляем обработчик на событие `submit`
     form.addEventListener('submit', (event) => {
       event.preventDefault();
       form.appendChild(statusMessage);
 
-      // Подготовка данных
       let formData = new FormData(form);
 
-      // Отправляем данные
+      let request = new XMLHttpRequest();
+      request.open('POST', 'https://cors-anywhere.herokuapp.com/https://mate-academy-form-lesson.herokuapp.com/create-application', true);
+      request.setRequestHeader('accept', 'application/json');
+      request.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded; charset=UTF-8');
+
       request.send(urlencodeFormData(formData));
 
-      // Функция для наблюдения изменения состояния request.readyState обновления statusMessage соответственно
       request.onreadystatechange = () => {
-        // <4 =  ожидаем ответ от сервера
         if (request.readyState < 4)
           statusMessage.innerHTML = message.loading;
-        // 4 = Ответ от сервера полностью загружен
         else if (request.readyState === 4) {
-          // 200 - 299 = успешная отправка данных!
           if (request.status == 200 && request.status < 300)
-            statusMessage.innerHTML = request.responseText; // Отобразим ответ сервера
+            statusMessage.innerHTML = request.responseText;
           else
             form.insertAdjacentHTML('beforeend', message.failure);
         }
