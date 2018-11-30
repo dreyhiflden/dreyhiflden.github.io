@@ -295,3 +295,79 @@ body {
   width: 24px;
   height: 24px;
 }
+
+.just-for-you {
+  padding: 70px 0 70px 0;
+}
+
+.container {
+  display: flex;
+  justify-content: space-between;
+}
+
+.just-for-you__image-container {
+  width: 264px;
+}
+
+.just-for-you__content-container {
+  width: 280px;
+}
+
+/*TODO: Take all styles of sections to one*/
+.companies {
+  padding: 70px 0 70px 0;
+  background: #50c3af;
+  text-align: center;
+}
+
+.companies__list {
+  display: flex;
+  justify-content: space-between;
+}
+
+.companies-title {
+  color: #fff;
+  padding-left: 30px;
+  justify-content: center;
+  display: inline-block;
+}
+
+.companies-title:after {
+  width: 305px;
+  left: 0;
+  background: rgba(226, 227, 228, 0.51);
+}
+
+.star-icon:before {
+  content: "";
+  position: absolute;
+  background: #0000 url("../img/star-icon.png") no-repeat 0 0;
+  width: 17px;
+  height: 16px;
+  left: 0;
+}
+
+.footer__container {
+  align-items: center;
+  height: 57px;
+}
+
+.footer__copyright {
+  color: #aaacaf;
+  font-size: 13px;
+}
+
+.footer__copyright--link {
+  color: #aaacaf;
+  text-decoration: none;
+}
+
+.footer__darker-text {
+  color: #787b80;
+}
+
+.social-links-list {
+  width: 75px;
+  display: flex;
+  justify-content: space-between;
+}
