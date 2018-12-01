@@ -13,7 +13,7 @@ body {
   list-style: none;
 }
 
-.inline-list > li {
+.inline-list__item {
   display: inline-block;
 }
 
@@ -77,7 +77,7 @@ body {
   padding: 0 0 23px 40px;
 }
 
-.desc {
+.description {
   font-size: 14px;
   color: #787b80;
   margin: 0 0 30px 0;
@@ -86,7 +86,7 @@ body {
 .fw-gr-line::after  {
   content:"";
   position: absolute;
-  background: -webkit-linear-gradient(left, rgba(226, 227, 228, 1) 40%, rgba(226, 227, 228, 0.1) 100%);
+  background: linear-gradient(left, rgba(226, 227, 228, 1) 40%, rgba(226, 227, 228, 0.1) 100%);
   display: block;
   height: 2px;
   width: 100%;
@@ -94,7 +94,7 @@ body {
   left: 0;
 }
 
-.cards__container {
+.flex-container {
   display: flex;
   justify-content: space-between;
   margin: 0;
@@ -112,11 +112,11 @@ body {
   padding: 60px 0 0 0;
 }
 
-.header__menu {
+.header-menu {
   margin-bottom: 80px;
 }
 
-.header__menu--item {
+.header-menu__item {
   font-size: 13px;
   font-family: 'Open Sans', sans-serif;
   text-transform: uppercase;
@@ -204,7 +204,7 @@ body {
 
 .two-photo__headline:after {
   content:"";
-  background: -webkit-linear-gradient(left, rgba(226, 227, 228, 1) 40%, rgba(226, 227, 228, 0.1) 100%);
+  background: linear-gradient(left, rgba(226, 227, 228, 1) 40%, rgba(226, 227, 228, 0.1) 100%);
   display: block;
   height: 2px;
   width: 290px;
@@ -229,7 +229,7 @@ body {
 .icon-support:before {
   content: "";
   position: absolute;
-  background: #0000 url("../img/support-icon.png") no-repeat 0 0;
+  background: url("../img/support-icon.png") no-repeat 0 0;
   left: 0;
   width: 24px;
   height: 24px;
@@ -279,7 +279,7 @@ body {
 .send-icon:before  {
   content: "";
   position: absolute;
-  background: #0000 url("../img/send_it_now-icon.png") no-repeat 0 0;
+  background: url("../img/send_it_now-icon.png") no-repeat 0 0;
   left: 0;
   width: 24px;
   height: 24px;
@@ -288,7 +288,7 @@ body {
 .pencil-icon:before {
   content: "";
   position: absolute;
-  background: #0000 url("../img/very_nice_to_see-icon.png") no-repeat 0 0;
+  background: url("../img/very_nice_to_see-icon.png") no-repeat 0 0;
   left: 0;
   width: 24px;
   height: 24px;
@@ -306,7 +306,6 @@ body {
   width: 280px;
 }
 
-/*TODO: Take all styles of sections to one*/
 .companies {
   padding: 70px 0 70px 0;
   background: #50c3af;
@@ -334,7 +333,7 @@ body {
 .star-icon:before {
   content: "";
   position: absolute;
-  background: #0000 url("../img/star-icon.png") no-repeat 0 0;
+  background: url("../img/star-icon.png") no-repeat 0 0;
   width: 17px;
   height: 16px;
   left: 0;
