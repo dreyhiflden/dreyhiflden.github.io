@@ -106,6 +106,10 @@ body {
   height: 24px;
 }
 
+.margin-bottom-40 {
+  margin: 0 0 40px 0;
+}
+
 .header {
   background: #1e4449 url("../img/header-bg.png") no-repeat scroll center;
   height: 628px;
@@ -205,11 +209,6 @@ body {
 
 .two-photo__card {
   width: 262px;
-}
-
-.two-photo__img,
-.three-photo__img {
-  margin: 0 0 40px 0;
 }
 
 .two-photo__headline:after {
