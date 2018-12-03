@@ -209,11 +209,12 @@ body {
   padding: 65px 0 75px 0;
 }
 
-.two-photo__column {
+.two-photo__card {
   width: 262px;
 }
 
-.two-photo__img {
+.two-photo__img,
+.three-photo__img {
   margin: 0 0 40px 0;
 }
 
@@ -225,10 +226,6 @@ body {
   width: 290px;
   position: absolute;
   bottom: 0;
-}
-
-.two-photo__desc {
-  margin: 0 0 34px 0;
 }
 
 .support {
@@ -251,12 +248,6 @@ body {
 
 .three-photo__card {
   width: 181px;
-  overflow: hidden;
-}
-
-.three-photo__card--img {
-  max-width: inherit;
-  margin: 0 0 40px 0;
 }
 
 .three-photo__desc {
