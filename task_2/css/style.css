@@ -86,13 +86,7 @@ body {
 }
 
 .gradient-line::after  {
-  content:"";
-  position: absolute;
   background: linear-gradient(to right, rgba(41, 49, 57, 0.06) 40%, rgba(41, 49, 57, 0.01) 100%);
-  display: block;
-  height: 2px;
-  width: 100%;
-  bottom: 0;
   left: 0;
 }
 
